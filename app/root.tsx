@@ -56,9 +56,10 @@ function Document({ children, title = `Remix SaasFrontend` }: { children: React.
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Links />
       </head>
-      <body className="min-h-screen text-gray-800 dark:text-white bg-white dark:bg-slate-900 max-w-full max-h-full">
+      <body className="max-h-full min-h-screen max-w-full bg-white text-gray-800 dark:bg-slate-900 dark:text-white">
         <BannerVariantTop
           item={{
             text: "Remix SaaS kit",
