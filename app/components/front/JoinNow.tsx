@@ -11,7 +11,7 @@ export default function JoinNow() {
               Start building your own SaaS application. Or learn how it's done in React, React, React and Svelte.
             </p>
             <a
-              href="https://alexandromg.gumroad.com/l/SaasFrontends-Remix"
+              href="https://github.com/AlexandroMtzG/remix-saas-kit"
               className="mt-8 bg-white text-theme-600 hover:text-theme-700 dark:bg-slate-600 dark:hover:bg-slate-700 dark:text-white border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium"
             >
               Get codebase!

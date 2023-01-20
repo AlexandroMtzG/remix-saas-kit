@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Roboto", ...defaultTheme.fontFamily.sans],
+        sans: ["Roboto Mono", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         transparent: "transparent",
@@ -47,7 +47,61 @@ module.exports = {
           800: colors.blue[800],
           900: colors.blue[900],
         },
+        accent: {
+          50: colors.gray[50],
+          100: colors.gray[100],
+          200: colors.gray[200],
+          300: colors.gray[300],
+          400: colors.gray[400],
+          500: colors.gray[500],
+          600: colors.gray[600],
+          700: colors.gray[700],
+          800: colors.gray[800],
+          900: colors.gray[900],
+        },
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "100%",
+          },
+        },
+        dark: {
+          css: {
+            color: theme("colors.gray.400"),
+            "h2, h3, h4, thead th": {
+              color: theme("colors.gray.200"),
+            },
+            "h2 small, h3 small, h4 small": {
+              color: theme("colors.gray.400"),
+            },
+            code: {
+              color: theme("colors.gray.200"),
+            },
+            hr: {
+              borderColor: theme("colors.gray.200"),
+              opacity: "0.05",
+            },
+            pre: {
+              boxShadow: "inset 0 0 0 1px rgb(255 255 255 / 0.1)",
+            },
+            a: {
+              color: theme("colors.white"),
+              borderBottomColor: theme("colors.sky.400"),
+            },
+            strong: {
+              color: theme("colors.gray.200"),
+            },
+            thead: {
+              color: theme("colors.gray.300"),
+              borderBottomColor: "rgb(148 163 184 / 0.2)",
+            },
+            "tbody tr": {
+              borderBottomColor: "rgb(148 163 184 / 0.1)",
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/line-clamp"), require("@tailwindcss/typography"), require("@tailwindcss/aspect-ratio")],

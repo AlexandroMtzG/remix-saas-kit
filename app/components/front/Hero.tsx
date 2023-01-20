@@ -71,7 +71,7 @@ export default function Hero() {
           <div className="rounded-md shadow">
             <Link
               to="/register"
-              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md bg-rose-500 text-theme-50 hover:bg-theme-600 md:py-4 md:text-lg md:px-10"
+              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md bg-theme-500 text-theme-50 hover:bg-theme-600 md:py-4 md:text-lg md:px-10"
             >
               Start today
             </Link>
