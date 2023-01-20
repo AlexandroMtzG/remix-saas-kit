@@ -35,9 +35,9 @@ function getBaseTemplateModel() {
     product_url: appUrl,
     login_url: appUrl + "/login",
     product_name: "Remix SaaS kit",
-    support_email: "saasfrontends@gmail.com",
+    support_email: "alex.martinez@absys.com.mx",
     sender_name: from,
-    company_name: "SaasFrontends",
+    company_name: "SaasRock",
     company_address: process.env.REMIX_COMPANY_ADDRESS,
   };
 }
