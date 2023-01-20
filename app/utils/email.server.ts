@@ -13,8 +13,8 @@ function getClient() {
     return null;
   }
 }
-var from = "Remix SaasFrontend";
-var fromEmail = "remix@saasfrontends.com";
+var from = "Remix SaaS kit";
+var fromEmail = "trial@saasrock.com";
 
 export async function sendPlainEmail(to: string, subject: string, textBody: string) {
   const client = getClient();
