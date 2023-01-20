@@ -12,6 +12,7 @@ import { createWorkspace, createWorkspaceUser } from "~/utils/db/workspaces.db.s
 import { WorkspaceType } from "~/application/enums/core/tenants/WorkspaceType";
 import { sendEmail } from "~/utils/email.server";
 import { i18nHelper } from "~/locale/i18n.utils";
+import WarningBanner from "~/components/ui/banners/WarningBanner";
 
 export const meta: MetaFunction = () => {
   return {
@@ -152,6 +153,9 @@ export default function RegisterRoute() {
               </span>
             </p>
           </div>
+
+          <WarningBanner title="Demo" text="Create a fake demo account or log in as admin@email.com, password = password." />
+
           <Form className="mt-8 space-y-6" method="post">
             <input type="hidden" name="redirectTo" value={searchParams.get("redirect") ?? undefined} />
             {/* Workspace */}

@@ -8,6 +8,7 @@ import { deleteUser, getUserByEmail } from "~/utils/db/users.db.server";
 import UserUtils from "~/utils/store/UserUtils";
 import { getMyTenants } from "~/utils/db/tenants.db.server";
 import { i18nHelper } from "~/locale/i18n.utils";
+import WarningBanner from "~/components/ui/banners/WarningBanner";
 
 export const meta: MetaFunction = () => {
   return {
@@ -114,6 +115,9 @@ export default function LoginRoute() {
               </Link>
             </p>
           </div>
+
+          <WarningBanner title="Demo" text="Use admin@email.com, password = password." />
+
           <Form className="mt-8 space-y-6" method="post">
             <input type="hidden" name="redirectTo" value={searchParams.get("redirect") ?? undefined} />
             <div className="rounded-sm shadow-sm -space-y-px">

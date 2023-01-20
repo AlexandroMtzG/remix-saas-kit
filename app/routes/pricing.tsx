@@ -8,6 +8,7 @@ import { Language } from "remix-i18next";
 import { SubscriptionProductDto } from "~/application/dtos/core/subscriptions/SubscriptionProductDto";
 import plans from "~/application/pricing/plans.server";
 import { i18nHelper } from "~/locale/i18n.utils";
+import WarningBanner from "~/components/ui/banners/WarningBanner";
 
 export const meta: MetaFunction = () => ({
   title: "Pricing | Remix SaaS kit",
@@ -40,6 +41,9 @@ export default function PricingRoute() {
               <h2 className="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-slate-200 sm:text-4xl">{t("front.pricing.title")}</h2>
               <p className="mt-4 text-lg leading-6 text-gray-500">{t("front.pricing.headline")}</p>
             </div>
+
+            <WarningBanner title="Demo" text="These are Stripe demo plans" />
+
             <Plans items={data.items} />
           </div>
         </div>
