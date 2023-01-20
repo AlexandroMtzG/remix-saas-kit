@@ -1,0 +1,69 @@
+{
+  "name": "remix-saas-kit",
+  "version": "0.0.1",
+  "description": "Remix SaaS kit with everything you need to start your SaaS applications.",
+  "author": "Alexandro Martinez",
+  "private": true,
+  "license": "",
+  "sideEffects": false,
+  "prisma": {
+    "seed": "node --require esbuild-register prisma/seed.ts"
+  },
+  "scripts": {
+    "build": "npm run build:css && cross-env NODE_ENV=production remix build",
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "dev": "concurrently \"npm run dev:css\" \"cross-env NODE_ENV=development remix dev\"",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "postinstall": "remix setup node"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.5.0",
+    "@prisma/client": "^3.11.0",
+    "@remix-run/react": "^1.2.3",
+    "@remix-run/vercel": "^1.2.3",
+    "@stripe/stripe-js": "^1.25.0",
+    "@types/postmark": "^2.0.3",
+    "@types/stripe": "^8.0.417",
+    "axios": "^0.26.1",
+    "bcryptjs": "^2.4.3",
+    "browser-image-compression": "^1.0.17",
+    "clsx": "^1.1.1",
+    "i18next": "^21.6.14",
+    "moment": "^2.29.1",
+    "numeral": "^2.0.6",
+    "pdfjs-dist": "2.9.359",
+    "postmark": "^3.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.16.1",
+    "remix": "^1.2.3",
+    "remix-i18next": "^3.0.0",
+    "stripe": "^8.211.0",
+    "tiny-emitter": "^2.1.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.2.3",
+    "@remix-run/eslint-config": "^1.2.3",
+    "@remix-run/serve": "^1.2.3",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/react": "^17.0.24",
+    "@types/react-datepicker": "^4.3.4",
+    "@types/react-dom": "^17.0.9",
+    "autoprefixer": "^10.4.4",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "esbuild-register": "^3.3.2",
+    "eslint": "^8.11.0",
+    "postcss": "^8.4.12",
+    "prisma": "^3.11.0",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.5.5"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

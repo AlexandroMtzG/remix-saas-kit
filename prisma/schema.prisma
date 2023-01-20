@@ -1,0 +1,248 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String                @id @default(uuid())
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  email              String                @unique
+  passwordHash       String
+  type               Int
+  firstName          String
+  lastName           String
+  phone              String
+  avatar             String
+  defaultWorkspaceId String?
+  verifyToken        String?
+  jokes              Joke[]
+  tenants            TenantUser[]
+  workspaces         WorkspaceUser[]
+  invitation         TenantUserInvitation?
+  contracts          ContractMember[]
+  link               Link[]
+  createdContracts   Contract[]
+  createdEmployees   Employee[]
+  contractActivities ContractActivity[]
+  linkInvitations    Link[]                @relation("userInvited")
+}
+
+model Tenant {
+  id                     String                 @id @default(uuid())
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime               @updatedAt
+  name                   String
+  subscriptionCustomerId String
+  subscriptionId         String?
+  users                  TenantUser[]
+  workspaces             Workspace[]
+  // features               TenantFeatures?
+  invitations            TenantUserInvitation[]
+  employees              Employee[]
+}
+
+// model TenantFeatures {
+//   id               String @id @default(uuid())
+//   tenantId         String @unique
+//   tenant           Tenant @relation(fields: [tenantId], references: [id])
+//   maxWorkspaces    Int
+//   maxUsers         Int
+//   maxLinks         Int
+//   maxStorage       Int
+//   monthlyContracts Int
+// }
+
+model TenantUser {
+  id       String @id @default(uuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role     Int
+  joined   Int
+  status   Int
+  // current  Boolean
+}
+
+model TenantUserInvitation {
+  id            String                          @id @default(uuid())
+  tenantId      String
+  tenant        Tenant                          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  email         String
+  firstName     String
+  lastName      String
+  role          Int
+  pending       Boolean
+  workspaces    TenantUserInvitationWorkspace[]
+  createdUserId String?                         @unique
+  user          User?                           @relation(fields: [createdUserId], references: [id], onDelete: Cascade)
+}
+
+model TenantUserInvitationWorkspace {
+  id           String               @id @default(uuid())
+  invitationId String
+  invitation   TenantUserInvitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  workspaceId  String
+}
+
+model Workspace {
+  id                   String          @id @default(uuid())
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  tenantId             String
+  tenant               Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name                 String
+  type                 Int
+  businessMainActivity String
+  registrationNumber   String
+  registrationDate     DateTime?
+  users                WorkspaceUser[]
+  employees            Employee[]
+  createdLinks         Link[]          @relation("createdByWorkspace")
+  asProviderLinks      Link[]          @relation("providerWorkspace")
+  asClientLinks        Link[]          @relation("clientWorkspace")
+}
+
+model WorkspaceUser {
+  id          String    @id @default(uuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // current     Boolean
+}
+
+model Joke {
+  id         String   @id @default(uuid())
+  jokesterId String
+  jokester   User     @relation(fields: [jokesterId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  name       String
+  content    String
+}
+
+model SubscriptionProduct {
+  id               String                @id @default(uuid())
+  stripeId         String
+  tier             Int
+  title            String
+  description      String
+  badge            String
+  active           Boolean
+  contactUs        Boolean
+  maxWorkspaces    Int
+  maxUsers         Int
+  maxLinks         Int
+  maxStorage       Int
+  monthlyContracts Int
+  prices           SubscriptionPrice[]
+  features         SubscriptionFeature[]
+}
+
+model SubscriptionPrice {
+  id                    String              @id @default(uuid())
+  subscriptionProductId String
+  subscriptionProduct   SubscriptionProduct @relation(fields: [subscriptionProductId], references: [id], onDelete: Cascade)
+  stripeId              String
+  type                  Int
+  billingPeriod         Int
+  price                 Int
+  currency              String
+  trialDays             Int
+  active                Boolean
+}
+
+model SubscriptionFeature {
+  id                    String              @id @default(uuid())
+  subscriptionProductId String
+  subscriptionProduct   SubscriptionProduct @relation(fields: [subscriptionProductId], references: [id], onDelete: Cascade)
+  order                 Int
+  key                   String
+  value                 String
+  included              Boolean
+}
+
+model Link {
+  id                   String     @id @default(uuid())
+  createdAt            DateTime   @default(now())
+  createdByUserId      String
+  createdByUser        User       @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  createdByWorkspaceId String
+  createdByWorkspace   Workspace  @relation("createdByWorkspace", fields: [createdByWorkspaceId], references: [id], onDelete: Cascade)
+  providerWorkspaceId  String
+  providerWorkspace    Workspace  @relation("providerWorkspace", fields: [providerWorkspaceId], references: [id], onDelete: Cascade)
+  clientWorkspaceId    String
+  clientWorkspace      Workspace  @relation("clientWorkspace", fields: [clientWorkspaceId], references: [id], onDelete: Cascade)
+  status               Int
+  userInvitedId        String
+  userInvited          User       @relation("userInvited", fields: [userInvitedId], references: [id], onDelete: Cascade)
+  contracts            Contract[]
+}
+
+model Employee {
+  id               String             @id @default(uuid())
+  createdAt        DateTime           @default(now())
+  createdByUserId  String
+  createdByUser    User               @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  tenantId         String
+  tenant           Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  workspaceId      String
+  workspace        Workspace          @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  firstName        String
+  lastName         String
+  email            String
+  ContractEmployee ContractEmployee[]
+}
+
+model Contract {
+  id              String             @id @default(uuid())
+  createdAt       DateTime           @default(now())
+  createdByUserId String
+  createdByUser   User               @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  linkId          String
+  link            Link               @relation(fields: [linkId], references: [id], onDelete: Cascade)
+  name            String
+  description     String
+  file            String
+  status          Int
+  members         ContractMember[]
+  employees       ContractEmployee[]
+  activity        ContractActivity[]
+}
+
+model ContractMember {
+  id         String    @id @default(uuid())
+  contractId String
+  contract   Contract  @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  role       Int
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  signDate   DateTime?
+}
+
+model ContractEmployee {
+  id         String   @id @default(uuid())
+  contractId String
+  contract   Contract @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+}
+
+model ContractActivity {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  createdByUserId String
+  createdByUser   User     @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  contractId      String
+  contract        Contract @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  type            Int
+}

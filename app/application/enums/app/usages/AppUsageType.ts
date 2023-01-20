@@ -1,0 +1,9 @@
+export enum AppUsageType {
+  ALL,
+  PROVIDERS,
+  CLIENTS,
+  EMPLOYEES,
+  CONTRACTS,
+  STORAGE,
+  PENDING_INVITATIONS,
+}
