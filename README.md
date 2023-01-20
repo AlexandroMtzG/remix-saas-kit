@@ -4,8 +4,6 @@ This is a v0.0.1 of [SaasRock](http://saasrock.com/?ref=AlexandroMtzG/remix-saas
 
 _*⚠️ This version is not maintained anymore as SaasRock is a commercial product (currently at v0.8), but this is still a good starting point for your SaaS project ⚠️*_
 
-![SaasRock v0.0.1](https://yahooder.sirv.com/saasfrontends/remix/ss/cover.png)
-
 ### Getting started
 
 1. Create the `.env` file and set the following values:
@@ -67,3 +65,8 @@ yarn dev
 20. Go to `app/settings/workspaces` and `Create`, `Edit` and `Delete` workspaces.
 
 21. That's it!
+
+### Other open source projects
+
+- [RemixBlocks](https://github.com/AlexandroMtzG/remix-blocks): Ready-to-use Remix + Tailwind CSS routes and components.
+- [RemixPageBlocks](https://github.com/AlexandroMtzG/remix-page-blocks) - Simple page block editor with Remix and Tailwind CSS.
