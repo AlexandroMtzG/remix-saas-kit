@@ -1,7 +1,5 @@
-import Features from "~/components/front/Features";
 import Footer from "~/components/front/Footer";
 import Hero from "~/components/front/Hero";
-import JoinNow from "~/components/front/JoinNow";
 import { Language } from "remix-i18next";
 import { getUserInfo } from "~/utils/session.server";
 import { MetaFunction, LoaderFunction, json, useCatch, Link } from "remix";
@@ -40,8 +38,8 @@ export default function IndexRoute() {
     <div>
       <div className="relative overflow-hidden bg-white dark:bg-gray-900 text-gray-800 dark:text-slate-200">
         <Hero />
-        <Features className="relative z-10" />
-        <JoinNow />
+        {/* <Features className="relative z-10" />
+        <JoinNow /> */}
         <Footer />
       </div>
     </div>
