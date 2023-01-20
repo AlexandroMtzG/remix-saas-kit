@@ -79,7 +79,7 @@ export default function MembersRoute() {
     if (appData.user?.type === UserType.Admin) {
       return 0;
     }
-    return appData.currentTenant?.features?.maxUsers ?? 0;
+    return 10;
   };
   const maxUsersReached = () => {
     return maxUsers() > 0 && (data.users?.length ?? 0) >= maxUsers();

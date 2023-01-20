@@ -19,6 +19,7 @@ import { getUserByEmail } from "~/utils/db/users.db.server";
 import clsx from "clsx";
 import { createUserInvitation } from "~/utils/db/tenantUserInvitations.db.server";
 import { sendEmail } from "~/utils/email.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "New member | Remix SaasFrontend",
@@ -195,7 +196,7 @@ export default function NewMemberRoute({ maxSize = "sm:max-w-lg" }: Props) {
     return workspaces.map((f) => f.name).join(", ");
   };
   const maxUsers = (): number => {
-    return appData.currentTenant?.features?.maxUsers ?? 0;
+    return 10;
   };
   const maxUsersReached = () => {
     return maxUsers() > 0 && (membersData.users?.length ?? 0) >= maxUsers();
