@@ -65,7 +65,7 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-          <p className="mt-2 text-center text-xs text-gray-400">2022, All rights reserved.</p>
+          <p className="mt-2 text-center text-xs text-gray-400">2023, All rights reserved.</p>
         </div>
       </footer>
     </div>

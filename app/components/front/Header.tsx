@@ -2,14 +2,10 @@ import { Fragment, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "~/components/front/Logo";
-import IconLight from "~/assets/img/icon-light.png";
-import IconDark from "~/assets/img/icon-dark.png";
 import DarkModeToggle from "~/components/ui/toggles/DarkModeToggle";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { Theme } from "~/application/enums/shared/Theme";
 import Icon from "./Icon";
-import LocaleSelector from "../ui/selectors/LocaleSelector";
 import { useLoaderData } from "remix";
 
 export default function Header() {
@@ -23,7 +19,7 @@ export default function Header() {
     { path: "/", title: t("front.navbar.product") },
     { path: "/pricing", title: t("front.navbar.pricing") },
     { path: "/contact", title: t("front.navbar.contact") },
-    { path: "/components", title: t("admin.components.title") },
+    // { path: "/components", title: t("admin.components.title") },
   ];
   function isCurrent(path: string): boolean {
     return location.pathname === path;
