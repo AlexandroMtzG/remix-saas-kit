@@ -14,7 +14,7 @@ import Loading from "~/components/ui/loaders/Loading";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Emails | Remix SaasFrontend",
+  title: "Emails | Remix SaaS kit",
 });
 
 type LoaderData = {

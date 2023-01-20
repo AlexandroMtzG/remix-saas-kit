@@ -10,7 +10,7 @@ import plans from "~/application/pricing/plans.server";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Pricing | Remix SaasFrontend",
+  title: "Pricing | Remix SaaS kit",
 });
 
 type LoaderData = {

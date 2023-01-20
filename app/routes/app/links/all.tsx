@@ -9,7 +9,7 @@ import { getUserInfo } from "~/utils/session.server";
 import { LinkStatus } from "~/application/enums/core/links/LinkStatus";
 
 export const meta: MetaFunction = () => ({
-  title: "Links | Remix SaasFrontend",
+  title: "Links | Remix SaaS kit",
 });
 
 type LoaderData = {

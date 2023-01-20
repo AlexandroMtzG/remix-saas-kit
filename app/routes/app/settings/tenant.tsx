@@ -6,7 +6,7 @@ import { updateTenant } from "~/utils/db/tenants.db.server";
 import { getUserInfo } from "~/utils/session.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Tenant | Remix SaasFrontend",
+  title: "Tenant | Remix SaaS kit",
 });
 
 type ActionData = {

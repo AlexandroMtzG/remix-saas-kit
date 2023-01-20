@@ -11,7 +11,7 @@ import { getTenantMember } from "~/utils/db/tenants.db.server";
 import { getWorkspaces } from "~/utils/db/workspaces.db.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Workspaces | Remix SaasFrontend",
+  title: "Workspaces | Remix SaaS kit",
 });
 
 export type LoaderData = {

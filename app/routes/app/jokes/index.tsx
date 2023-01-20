@@ -4,7 +4,7 @@ import type { Joke } from "@prisma/client";
 import { db } from "~/utils/db.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Jokes | Remix SaasFrontend",
+  title: "Jokes | Remix SaaS kit",
 });
 
 type LoaderData = { randomJoke: Joke };

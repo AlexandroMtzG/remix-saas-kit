@@ -5,7 +5,7 @@ import { db } from "~/utils/db.server";
 import { getUserInfo, requireUserId } from "~/utils/session.server";
 
 export const meta: MetaFunction = () => ({
-  title: "New joke | Remix SaasFrontend",
+  title: "New joke | Remix SaaS kit",
 });
 
 export const loader: LoaderFunction = async ({ request }) => {

@@ -7,7 +7,7 @@ import { json, LoaderFunction, MetaFunction, useLoaderData, useTransition } from
 import { getUserInfo } from "~/utils/session.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Clients | Remix SaasFrontend",
+  title: "Clients | Remix SaaS kit",
 });
 
 type LoaderData = {

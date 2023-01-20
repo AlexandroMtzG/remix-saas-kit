@@ -5,7 +5,7 @@ import { json, LoaderFunction, MetaFunction } from "remix";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Privacy policy | Remix SaasFrontend",
+  title: "Privacy policy | Remix SaaS kit",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {

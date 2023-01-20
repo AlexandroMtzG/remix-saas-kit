@@ -8,7 +8,7 @@ import { createEmployee, getEmployeeByEmail } from "~/utils/db/app/employees.db.
 import { getUserInfo } from "~/utils/session.server";
 
 export const meta: MetaFunction = () => ({
-  title: "New employees | Remix SaasFrontend",
+  title: "New employees | Remix SaaS kit",
 });
 
 type ActionData = {

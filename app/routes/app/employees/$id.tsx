@@ -8,7 +8,7 @@ import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Employee | Remix SaasFrontend",
+  title: "Employee | Remix SaaS kit",
 });
 
 type LoaderData = {

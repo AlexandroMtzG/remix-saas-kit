@@ -5,7 +5,7 @@ import { loadAppData } from "~/utils/data/useAppData";
 import { requireAuthorization } from "~/utils/loaders.middleware";
 
 export const meta: MetaFunction = () => ({
-  title: "App | Remix SaasFrontend",
+  title: "App | Remix SaaS kit",
 });
 
 export const action: ActionFunction = async ({ request }) => {

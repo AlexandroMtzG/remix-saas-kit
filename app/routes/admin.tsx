@@ -5,7 +5,7 @@ import { useAppAction } from "~/utils/actions/useAppAction";
 import { requireAdminUser } from "~/utils/loaders.middleware";
 
 export const meta: MetaFunction = () => ({
-  title: "Admin | Remix SaasFrontend",
+  title: "Admin | Remix SaaS kit",
 });
 
 export const action: ActionFunction = async ({ request }) => {

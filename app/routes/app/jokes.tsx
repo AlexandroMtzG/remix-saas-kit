@@ -5,7 +5,7 @@ import { db } from "~/utils/db.server";
 import { useAppData } from "~/utils/data/useAppData";
 
 export const meta: MetaFunction = () => ({
-  title: "Jokes | Remix SaasFrontend",
+  title: "Jokes | Remix SaaS kit",
 });
 
 type LoaderData = {

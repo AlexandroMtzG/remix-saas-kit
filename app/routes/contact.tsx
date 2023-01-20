@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Contact | Remix SaasFrontend",
+  title: "Contact | Remix SaaS kit",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {

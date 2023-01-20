@@ -17,7 +17,7 @@ import { UserType } from "~/application/enums/core/users/UserType";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Users | Remix SaasFrontend",
+  title: "Users | Remix SaaS kit",
 });
 
 type LoaderData = {

@@ -8,7 +8,7 @@ import { MetaFunction, LoaderFunction, json, useCatch, Link } from "remix";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Remix SaasFrontend",
+  title: "Remix SaaS kit",
 });
 
 type LoaderData = {

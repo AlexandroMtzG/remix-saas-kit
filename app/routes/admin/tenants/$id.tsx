@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 import { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => ({
-  title: "Tenant | Remix SaasFrontend",
+  title: "Tenant | Remix SaaS kit",
 });
 
 export default function AdminTenantRoute() {

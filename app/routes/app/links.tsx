@@ -4,7 +4,7 @@ import Tabs, { TabItem } from "~/components/ui/tabs/Tabs";
 import { json, Link, LoaderFunction, MetaFunction, redirect } from "remix";
 
 export const meta: MetaFunction = () => ({
-  title: "Links | Remix SaasFrontend",
+  title: "Links | Remix SaaS kit",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {

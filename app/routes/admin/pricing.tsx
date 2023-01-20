@@ -17,7 +17,7 @@ import clsx from "~/utils/shared/ClassesUtils";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Pricing | Remix SaasFrontend",
+  title: "Pricing | Remix SaaS kit",
 });
 
 type LoaderData = {

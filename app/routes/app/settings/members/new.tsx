@@ -22,7 +22,7 @@ import { sendEmail } from "~/utils/email.server";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "New member | Remix SaasFrontend",
+  title: "New member | Remix SaaS kit",
 });
 
 type LoaderData = {

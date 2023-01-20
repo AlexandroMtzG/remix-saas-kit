@@ -8,7 +8,7 @@ import SidebarIcon from "~/components/layouts/icons/SidebarIcon";
 import { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => ({
-  title: "Navigation | Remix SaasFrontend",
+  title: "Navigation | Remix SaaS kit",
 });
 
 export default function AdminNavigationRoute() {

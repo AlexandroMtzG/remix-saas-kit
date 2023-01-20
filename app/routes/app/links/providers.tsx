@@ -7,7 +7,7 @@ import { getProviderLinks, LinkWithWorkspacesAndContracts } from "~/utils/db/lin
 import { getUserInfo } from "~/utils/session.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Providers | Remix SaasFrontend",
+  title: "Providers | Remix SaaS kit",
 });
 
 type LoaderData = {

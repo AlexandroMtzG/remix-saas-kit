@@ -12,7 +12,7 @@ import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessMod
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Forgot password | Remix SaasFrontend",
+  title: "Forgot password | Remix SaaS kit",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {

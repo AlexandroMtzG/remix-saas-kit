@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => ({
-  title: "Unauthorized | Remix SaasFrontend",
+  title: "Unauthorized | Remix SaaS kit",
 });
 
 export default function Unauthorized() {

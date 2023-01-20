@@ -4,7 +4,7 @@ import Tabs, { TabItem } from "~/components/ui/tabs/Tabs";
 import { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => ({
-  title: "Settings | Remix SaasFrontend",
+  title: "Settings | Remix SaaS kit",
 });
 
 export default function SettingsRoute() {

@@ -18,7 +18,7 @@ import { createWorkspace, createWorkspaceUser, getWorkspacesCount } from "~/util
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "New workspace | Remix SaasFrontend",
+  title: "New workspace | Remix SaaS kit",
 });
 
 type LoaderData = {

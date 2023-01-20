@@ -15,7 +15,7 @@ import { deleteUserInvitation, getUserInvitation, getUserInvitations } from "~/u
 import MemberInvitationsListAndTable from "~/components/core/settings/members/MemberInvitationsListAndTable";
 
 export const meta: MetaFunction = () => ({
-  title: "Members | Remix SaasFrontend",
+  title: "Members | Remix SaaS kit",
 });
 
 type LoaderData = {

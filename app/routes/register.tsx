@@ -15,7 +15,7 @@ import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Register | Remix SaasFrontend",
+    title: "Register | Remix SaaS kit",
   };
 };
 

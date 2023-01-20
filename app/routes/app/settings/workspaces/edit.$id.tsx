@@ -19,7 +19,7 @@ import { getWorkspace, updateWorkspace, updateWorkspaceUsers, deleteWorkspace } 
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Edit workspace | Remix SaasFrontend",
+  title: "Edit workspace | Remix SaaS kit",
 });
 
 type LoaderData = {

@@ -15,7 +15,7 @@ import { loadAppData } from "~/utils/data/useAppData";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "New link | Remix SaasFrontend",
+  title: "New link | Remix SaaS kit",
 });
 
 type LoaderData = {

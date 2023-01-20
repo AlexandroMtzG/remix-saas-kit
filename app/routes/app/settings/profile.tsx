@@ -21,7 +21,7 @@ import { db } from "~/utils/db.server";
 import bcrypt from "bcryptjs";
 
 export const meta: MetaFunction = () => ({
-  title: "Profile | Remix SaasFrontend",
+  title: "Profile | Remix SaaS kit",
 });
 
 type ActionData = {

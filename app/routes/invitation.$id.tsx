@@ -17,7 +17,7 @@ import { createUserSession, getUserInfo, setLoggedUser } from "~/utils/session.s
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "Invitation | Remix SaasFrontend",
+  title: "Invitation | Remix SaaS kit",
 });
 
 type LoaderData = {

@@ -3,7 +3,7 @@ import { MetaFunction } from "remix";
 import AllComponentsList from "~/components/ui/AllComponentsList";
 
 export const meta: MetaFunction = () => ({
-  title: "Components | Remix SaasFrontend",
+  title: "Components | Remix SaaS kit",
 });
 
 export default function AdminComponentsRoute() {

@@ -9,7 +9,7 @@ import { adminGetAllTenants, TenantWithWorkspacesAndUsers } from "~/utils/db/ten
 import Loading from "~/components/ui/loaders/Loading";
 
 export const meta: MetaFunction = () => ({
-  title: "Tenants | Remix SaasFrontend",
+  title: "Tenants | Remix SaaS kit",
 });
 
 type LoaderData = {

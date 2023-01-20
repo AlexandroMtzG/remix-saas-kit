@@ -15,7 +15,7 @@ import { sendEmail } from "~/utils/email.server";
 import { getUser } from "~/utils/db/users.db.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Pending | Remix SaasFrontend",
+  title: "Pending | Remix SaaS kit",
 });
 
 type LoaderData = {

@@ -11,7 +11,7 @@ import EmployeesUsage from "~/components/app/usages/EmployeesUsage";
 import ProvidersUsage from "~/components/app/usages/ProvidersUsage";
 
 export const meta: MetaFunction = () => ({
-  title: "Dashboard | Remix SaasFrontend",
+  title: "Dashboard | Remix SaaS kit",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {

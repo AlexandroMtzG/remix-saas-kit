@@ -8,7 +8,7 @@ import { getUserInfo } from "~/utils/session.server";
 import { getContracts } from "~/utils/db/contracts.db.server";
 
 export const meta: MetaFunction = () => ({
-  title: "Contracts | Remix SaasFrontend",
+  title: "Contracts | Remix SaaS kit",
 });
 
 type LoaderData = {

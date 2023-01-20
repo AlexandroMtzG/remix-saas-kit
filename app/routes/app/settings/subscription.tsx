@@ -19,7 +19,7 @@ import MySubscriptionProducts from "~/components/core/settings/subscription/MySu
 import { DashboardLoaderData, loadDashboardData } from "~/utils/data/useDashboardData";
 
 export const meta: MetaFunction = () => ({
-  title: "Subscription | Remix SaasFrontend",
+  title: "Subscription | Remix SaaS kit",
 });
 
 type LoaderData = DashboardLoaderData & {

@@ -29,7 +29,7 @@ import { sendContract } from "~/utils/app/ContractUtils";
 import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
-  title: "New contract | Remix SaasFrontend",
+  title: "New contract | Remix SaaS kit",
 });
 
 type LoaderData = {

@@ -34,7 +34,7 @@ function getBaseTemplateModel() {
   return {
     product_url: appUrl,
     login_url: appUrl + "/login",
-    product_name: "Remix SaasFrontend",
+    product_name: "Remix SaaS kit",
     support_email: "saasfrontends@gmail.com",
     sender_name: from,
     company_name: "SaasFrontends",
