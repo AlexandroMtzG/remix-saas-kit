@@ -14,6 +14,7 @@ import { SubscriptionProductDto } from "~/application/dtos/core/subscriptions/Su
 import { createStripePrice, createStripeProduct } from "~/utils/stripe.server";
 import { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
 import clsx from "~/utils/shared/ClassesUtils";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Pricing | Remix SaasFrontend",

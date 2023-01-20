@@ -14,6 +14,7 @@ import { createUserSession, getUserInfo, setLoggedUser } from "~/utils/session.s
 import { Tenant, TenantUser, User } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { UserType } from "~/application/enums/core/users/UserType";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Users | Remix SaasFrontend",

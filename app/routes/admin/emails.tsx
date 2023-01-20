@@ -11,6 +11,7 @@ import { useAppData } from "~/utils/data/useAppData";
 import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
 import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
 import Loading from "~/components/ui/loaders/Loading";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Emails | Remix SaasFrontend",
@@ -23,7 +24,7 @@ type LoaderData = {
 
 export let loader: LoaderFunction = async ({ request }) => {
   const items = await getPostmarkTemplates();
-  if (items.length > 0) {
+  if (items && items.length > 0) {
     return json({
       onPostmark: true,
       items,
@@ -52,7 +53,7 @@ export const action: ActionFunction = async ({ request }) => {
   const type = form.get("type")?.toString();
   if (type === "create-postmark-emails") {
     const items = await getPostmarkTemplates();
-    if (items.length > 0) {
+    if (items && items.length > 0) {
       return redirect("/admin/emails");
     }
     try {
