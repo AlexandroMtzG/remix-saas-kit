@@ -11,7 +11,6 @@ import Loading from "~/components/ui/loaders/Loading";
 import { ActionFunction, json, LoaderFunction, MetaFunction, useActionData, useLoaderData, useSubmit, useTransition } from "remix";
 import { adminGetAllUsers, deleteUser, getUser, updateUserPassword } from "~/utils/db/users.db.server";
 import { createUserSession, getUserInfo, setLoggedUser } from "~/utils/session.server";
-import { i18n } from "~/locale/i18n.server";
 import { Tenant, TenantUser, User } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { UserType } from "~/application/enums/core/users/UserType";
@@ -45,7 +44,7 @@ const success = (data: ActionData) => json(data, { status: 200 });
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
   const userInfo = await getUserInfo(request);
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const form = await request.formData();
   const type: ActionType = form.get("type")?.toString() as ActionType;

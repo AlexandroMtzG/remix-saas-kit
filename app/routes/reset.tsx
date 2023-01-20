@@ -1,25 +1,25 @@
-import { UserVerifyRequest } from "~/application/contracts/core/users/UserVerifyRequest";
 import Logo from "~/components/front/Logo";
 import LoadingButton, { RefLoadingButton } from "~/components/ui/buttons/LoadingButton";
 import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
 import classNames from "~/utils/shared/ClassesUtils";
 import UserUtils from "~/utils/store/UserUtils";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LoaderFunction, json, ActionFunction, Form, useActionData, MetaFunction } from "remix";
-import { i18n } from "~/locale/i18n.server";
 import { getUserByEmail, updateUserPassword } from "~/utils/db/users.db.server";
 import bcrypt from "bcryptjs";
 import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Reset | Remix SaasFrontend",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {
+  const { translations } = await i18nHelper(request);
   return json({
-    i18n: await i18n.getTranslations(request, ["translations"]),
+    i18n: translations,
   });
 };
 
@@ -34,7 +34,7 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 const success = (data: ActionData) => json(data, { status: 200 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const form = await request.formData();
   const email = form.get("email")?.toString() ?? "";

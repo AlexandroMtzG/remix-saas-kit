@@ -3,9 +3,9 @@ import { ActionFunction, json, LoaderFunction, MetaFunction, redirect, useAction
 import { deleteEmployee, EmployeeWithCreatedByUser, getEmployee, updateEmployee } from "~/utils/db/app/employees.db.server";
 import Breadcrumb from "~/components/ui/breadcrumbs/Breadcrumb";
 import EmployeeProfile from "~/components/app/employees/EmployeeProfile";
-import { i18n } from "~/locale/i18n.server";
 import { useEffect, useRef } from "react";
 import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Employee | Remix SaasFrontend",
@@ -28,7 +28,7 @@ type ActionData = {
 };
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request, params }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   if (!params.id) {
     return badRequest({ error: t("shared.notFound") });

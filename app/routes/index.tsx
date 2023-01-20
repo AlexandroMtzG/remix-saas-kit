@@ -2,10 +2,10 @@ import Features from "~/components/front/Features";
 import Footer from "~/components/front/Footer";
 import Hero from "~/components/front/Hero";
 import JoinNow from "~/components/front/JoinNow";
-import { i18n } from "~/locale/i18n.server";
 import { Language } from "remix-i18next";
 import { getUserInfo } from "~/utils/session.server";
 import { MetaFunction, LoaderFunction, json, useCatch, Link } from "remix";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Remix SaasFrontend",
@@ -17,11 +17,12 @@ type LoaderData = {
 };
 
 export let loader: LoaderFunction = async ({ request }) => {
+  const { translations } = await i18nHelper(request);
   try {
     const userInfo = await getUserInfo(request);
     const data: LoaderData = {
       authenticated: (userInfo?.userId ?? "").length > 0,
-      i18n: await i18n.getTranslations(request, ["translations"]),
+      i18n: translations,
     };
     return json(data);
   } catch (e) {
@@ -29,7 +30,7 @@ export let loader: LoaderFunction = async ({ request }) => {
       error: e,
     });
     return json({
-      i18n: await i18n.getTranslations(request, ["translations"]),
+      i18n: translations,
     });
   }
 };

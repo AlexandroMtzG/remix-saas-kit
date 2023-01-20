@@ -1,14 +1,13 @@
-import { ActionFunction, Form, json, Link, LoaderFunction, MetaFunction, useActionData, useSearchParams, useTransition } from "remix";
+import { ActionFunction, Form, json, Link, LoaderFunction, MetaFunction, useActionData, useSearchParams } from "remix";
 import { createUserSession, getUserInfo, setLoggedUser } from "~/utils/session.server";
 import bcrypt from "bcryptjs";
 import Logo from "~/components/front/Logo";
-import LoadingButton, { RefLoadingButton } from "~/components/ui/buttons/LoadingButton";
+import LoadingButton from "~/components/ui/buttons/LoadingButton";
 import { useTranslation } from "react-i18next";
-import { useRef } from "react";
-import { i18n } from "~/locale/i18n.server";
 import { deleteUser, getUserByEmail } from "~/utils/db/users.db.server";
 import UserUtils from "~/utils/store/UserUtils";
 import { getMyTenants } from "~/utils/db/tenants.db.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => {
   return {
@@ -17,8 +16,9 @@ export const meta: MetaFunction = () => {
 };
 
 export let loader: LoaderFunction = async ({ request }) => {
+  const { translations } = await i18nHelper(request);
   return json({
-    i18n: await i18n.getTranslations(request, ["translations"]),
+    i18n: translations,
   });
 };
 
@@ -36,7 +36,7 @@ type ActionData = {
 
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
   const userInfo = await getUserInfo(request);
 
   // await new Promise((r) => setTimeout(r, 5000));
@@ -87,8 +87,8 @@ export const action: ActionFunction = async ({ request }) => {
   return createUserSession(
     {
       ...userSession,
-      // locale: userInfo.locale,
       lightOrDarkMode: userInfo.lightOrDarkMode,
+      lng: userInfo.lng,
     },
     redirectTo
   );

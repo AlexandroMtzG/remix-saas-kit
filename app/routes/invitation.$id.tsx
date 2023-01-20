@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Tenant, TenantUserInvitation, User } from "@prisma/client";
 import { LoaderFunction, json, ActionFunction, useLoaderData, Form, useActionData, MetaFunction } from "remix";
-import { i18n } from "~/locale/i18n.server";
 import { getUserByEmail, register } from "~/utils/db/users.db.server";
 import { sendEmail } from "~/utils/email.server";
 import { getUserInvitation, updateUserInvitationPending } from "~/utils/db/tenantUserInvitations.db.server";
@@ -15,6 +14,7 @@ import { Language } from "remix-i18next";
 import { createTenantUser } from "~/utils/db/tenants.db.server";
 import { createWorkspaceUser } from "~/utils/db/workspaces.db.server";
 import { createUserSession, getUserInfo, setLoggedUser } from "~/utils/session.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Invitation | Remix SaasFrontend",
@@ -26,10 +26,11 @@ type LoaderData = {
   existingUser: User | null;
 };
 export let loader: LoaderFunction = async ({ request, params }) => {
+  const { translations } = await i18nHelper(request);
   const invitation = await getUserInvitation(params.id ?? "");
   const existingUser = await getUserByEmail(invitation?.email);
   const data: LoaderData = {
-    i18n: await i18n.getTranslations(request, ["translations"]),
+    i18n: translations,
     invitation,
     existingUser,
   };
@@ -43,7 +44,6 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request, params }) => {
   const userInfo = await getUserInfo(request);
-  let t = await i18n.getFixedT(request, "translations");
 
   const form = await request.formData();
   const password = form.get("password")?.toString() ?? "";
@@ -91,8 +91,8 @@ export const action: ActionFunction = async ({ request, params }) => {
     return createUserSession(
       {
         ...userSession,
-        // locale: userInfo.locale,
         lightOrDarkMode: userInfo.lightOrDarkMode,
+        lng: userInfo.lng,
       },
       "/app/dashboard"
     );
@@ -116,8 +116,8 @@ export const action: ActionFunction = async ({ request, params }) => {
     return createUserSession(
       {
         ...userSession,
-        // locale: userInfo.locale,
         lightOrDarkMode: userInfo.lightOrDarkMode,
+        lng: userInfo.lng,
       },
       "/app/dashboard"
     );

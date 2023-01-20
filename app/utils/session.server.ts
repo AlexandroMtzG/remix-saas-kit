@@ -3,7 +3,6 @@ import { UserType } from "~/application/enums/core/users/UserType";
 
 import { db } from "./db.server";
 import { getMyTenants } from "./db/tenants.db.server";
-import { deleteUser } from "./db/users.db.server";
 import { getMyWorkspaces, getWorkspace } from "./db/workspaces.db.server";
 
 export async function setLoggedUser(user: { id: string; email: string; defaultWorkspaceId: string | null }) {
@@ -69,11 +68,13 @@ export async function getUserInfo(request: Request) {
   const currentTenantId = session.get("currentTenantId");
   const currentWorkspaceId = session.get("currentWorkspaceId");
   const lightOrDarkMode = session.get("lightOrDarkMode");
+  const lng = session.get("lng") ?? "en";
   return {
     userId,
     currentTenantId,
     currentWorkspaceId,
     lightOrDarkMode,
+    lng,
   };
 }
 
@@ -152,6 +153,7 @@ export async function createUserSession(
     currentTenantId: string;
     currentWorkspaceId: string;
     lightOrDarkMode: string;
+    lng: string;
   },
   redirectTo: string = ""
 ) {
@@ -160,6 +162,7 @@ export async function createUserSession(
   session.set("currentTenantId", userSession.currentTenantId);
   session.set("currentWorkspaceId", userSession.currentWorkspaceId);
   session.set("lightOrDarkMode", userSession.lightOrDarkMode);
+  session.set("lng", userSession.lng);
   return redirect(redirectTo, {
     headers: {
       "Set-Cookie": await storage.commitSession(session),

@@ -1,10 +1,10 @@
-import { i18n } from "~/locale/i18n.server";
-import { AppLoaderData, loadAppData } from "../data/useAppData";
+import { i18nHelper } from "~/locale/i18n.utils";
+import { loadAppData } from "../data/useAppData";
 import { ContractWithDetails } from "../db/contracts.db.server";
 import { sendEmail } from "../email.server";
 
 export async function sendContract(request: Request, contract: ContractWithDetails) {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
   const appData = await loadAppData(request);
 
   const membersJson =

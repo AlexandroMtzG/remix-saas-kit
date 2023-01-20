@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Transition } from "@headlessui/react";
-import { FormEvent, Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { TenantUserRole } from "~/application/enums/core/tenants/TenantUserRole";
 import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
 import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
@@ -14,8 +14,7 @@ import { Workspace } from "@prisma/client";
 import { ActionFunction, Form, json, LoaderFunction, MetaFunction, useActionData, useLoaderData, useTransition } from "remix";
 import { getWorkspaces } from "~/utils/db/workspaces.db.server";
 import { getUserInfo } from "~/utils/session.server";
-import { i18n } from "~/locale/i18n.server";
-import { createTenantUser, getTenant, getTenantMember } from "~/utils/db/tenants.db.server";
+import { getTenantMember } from "~/utils/db/tenants.db.server";
 import { getUserByEmail } from "~/utils/db/users.db.server";
 import clsx from "clsx";
 import { createUserInvitation } from "~/utils/db/tenantUserInvitations.db.server";
@@ -52,7 +51,7 @@ type ActionData = {
 
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const appData = await loadAppData(request);
 

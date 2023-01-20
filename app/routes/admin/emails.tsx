@@ -10,7 +10,6 @@ import emailTemplates from "~/application/emails/emailTemplates.server";
 import { useAppData } from "~/utils/data/useAppData";
 import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
 import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
-import { i18n } from "~/locale/i18n.server";
 import Loading from "~/components/ui/loaders/Loading";
 
 export const meta: MetaFunction = () => ({
@@ -47,7 +46,7 @@ type ActionData = {
 const success = (data: ActionData) => json(data, { status: 200 });
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const form = await request.formData();
   const type = form.get("type")?.toString();

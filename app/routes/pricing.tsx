@@ -4,10 +4,10 @@ import Footer from "~/components/front/Footer";
 import { useTranslation } from "react-i18next";
 import { getAllSubscriptionProducts } from "~/utils/db/subscriptionProducts.db.server";
 import { LoaderFunction, json, useLoaderData, MetaFunction } from "remix";
-import { i18n } from "~/locale/i18n.server";
 import { Language } from "remix-i18next";
 import { SubscriptionProductDto } from "~/application/dtos/core/subscriptions/SubscriptionProductDto";
 import plans from "~/application/pricing/plans.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Pricing | Remix SaasFrontend",
@@ -18,9 +18,10 @@ type LoaderData = {
   items: SubscriptionProductDto[];
 };
 export let loader: LoaderFunction = async ({ request }) => {
+  const { translations } = await i18nHelper(request);
   const items = await getAllSubscriptionProducts();
   const data: LoaderData = {
-    i18n: await i18n.getTranslations(request, ["translations"]),
+    i18n: translations,
     items: items.length > 0 ? items : plans,
   };
   return json(data);

@@ -62,6 +62,7 @@ function Document({ children, title = `Remix SaasFrontend` }: { children: React.
         <BannerVariantTop
           item={{
             text: "Remix SaaS kit",
+            href: "/",
             cta: [
               {
                 text: (
@@ -111,19 +112,21 @@ export const action: ActionFunction = async ({ request }) => {
         userId: userInfo?.userId ?? "",
         currentTenantId: userInfo?.currentTenantId ?? "",
         currentWorkspaceId: userInfo?.currentWorkspaceId ?? "",
-        // locale: userInfo?.currentWorkspaceId ?? "en",
         lightOrDarkMode,
+        lng: userInfo?.currentWorkspaceId ?? "en",
       },
       redirect
     );
   }
   if (type === "setLocale") {
+    const lng = form.get("lng")?.toString() ?? "en";
     return createUserSession(
       {
         userId: userInfo?.userId,
         currentTenantId: userInfo?.currentTenantId,
         currentWorkspaceId: userInfo?.currentWorkspaceId,
         lightOrDarkMode: userInfo?.lightOrDarkMode,
+        lng,
       },
       redirect
     );

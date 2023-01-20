@@ -2,17 +2,18 @@ import Footer from "~/components/front/Footer";
 import Header from "~/components/front/Header";
 import WarningBanner from "~/components/ui/banners/WarningBanner";
 import { useState } from "react";
-import { ActionFunction, json, LoaderFunction, MetaFunction, useLoaderData } from "remix";
+import { json, LoaderFunction, MetaFunction, useLoaderData } from "remix";
 import { useTranslation } from "react-i18next";
-import { i18n } from "~/locale/i18n.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Contact | Remix SaasFrontend",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {
+  const { translations } = await i18nHelper(request);
   return json({
-    i18n: await i18n.getTranslations(request, ["translations"]),
+    i18n: translations,
     actionUrl: process.env.REMIX_INTEGRATIONS_CONTACT_FORMSPREE?.toString() ?? "",
   });
 };

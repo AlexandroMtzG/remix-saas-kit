@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import Icon from "./Icon";
 import { useLoaderData } from "remix";
+import LocaleSelector from "../ui/selectors/LocaleSelector";
 
 export default function Header() {
   const data = useLoaderData();
@@ -38,7 +39,7 @@ export default function Header() {
                   <div className="-mr-1 flex items-center md:hidden">
                     <div className="flex">
                       <div className="inline-flex rounded-md space-x-2">
-                        {/* <LocaleSelector className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-sm text-gray-900 dark:text-slate-300" /> */}
+                        <LocaleSelector className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-sm text-gray-900 dark:text-slate-300" />
 
                         {!data.authenticated && (
                           <Link
@@ -87,7 +88,7 @@ export default function Header() {
                     </Link>
                   );
                 })}
-                {/* <LocaleSelector className="hidden lg:block" /> */}
+                <LocaleSelector className="hidden lg:block" />
                 <DarkModeToggle className="hidden lg:flex" />
               </div>
               <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0 z-40">

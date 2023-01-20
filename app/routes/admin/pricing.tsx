@@ -13,7 +13,6 @@ import {
 import { SubscriptionProductDto } from "~/application/dtos/core/subscriptions/SubscriptionProductDto";
 import { createStripePrice, createStripeProduct } from "~/utils/stripe.server";
 import { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
-import { i18n } from "~/locale/i18n.server";
 import clsx from "~/utils/shared/ClassesUtils";
 
 export const meta: MetaFunction = () => ({
@@ -51,7 +50,7 @@ type ActionData = {
 const success = (data: ActionData) => json(data, { status: 200 });
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const items = await getAllSubscriptionProducts();
   if (items.length > 0) {

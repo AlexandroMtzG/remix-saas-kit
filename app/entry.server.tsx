@@ -1,8 +1,8 @@
 import { createInstance } from "i18next";
 import { renderToString } from "react-dom/server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
-import type { EntryContext } from "remix";
-import { RemixServer } from "remix";
+import { EntryContext } from "@remix-run/node";
+import { RemixServer } from "@remix-run/react";
 
 export default async function handleRequest(request: Request, responseStatusCode: number, responseHeaders: Headers, remixContext: EntryContext) {
   // Here you also need to initialize i18next using initReactI18next, you should
@@ -12,8 +12,7 @@ export default async function handleRequest(request: Request, responseStatusCode
   let i18n = createInstance();
   await i18n.use(initReactI18next).init({
     supportedLngs: ["es", "en"],
-    defaultNS: "common",
-    fallbackLng: "en",
+    defaultNS: "translations",
     react: { useSuspense: false },
   });
 

@@ -1,23 +1,24 @@
 import Logo from "~/components/front/Logo";
 import LoadingButton, { RefLoadingButton } from "~/components/ui/buttons/LoadingButton";
 import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ActionFunction, Form, json, LoaderFunction, MetaFunction, useActionData } from "remix";
 import crypto from "crypto";
 import { getUserByEmail, updateUserVerifyToken } from "~/utils/db/users.db.server";
-import { i18n } from "~/locale/i18n.server";
 import { sendEmail } from "~/utils/email.server";
 import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Forgot password | Remix SaasFrontend",
 });
 
 export let loader: LoaderFunction = async ({ request }) => {
+  const { translations } = await i18nHelper(request);
   return json({
-    i18n: await i18n.getTranslations(request, ["translations"]),
+    i18n: translations,
   });
 };
 
@@ -27,7 +28,7 @@ type ActionData = {
 };
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const form = await request.formData();
   const email = form.get("email")?.toString();
@@ -61,15 +62,15 @@ export default function ForgotPasswordRoute() {
   const { t } = useTranslation("translations");
   const actionData = useActionData<ActionData>();
 
-  const search = useLocation().search;
-  const emailQueryParam = new URLSearchParams(search).get("e");
+  // const search = useLocation().search;
+  // const emailQueryParam = new URLSearchParams(search).get("e");
 
   const loadingButton = useRef<RefLoadingButton>(null);
   const errorModal = useRef<RefErrorModal>(null);
   const successModal = useRef<RefSuccessModal>(null);
 
   const [emailSent, setEmailSent] = useState(false);
-  const [email, setEmail] = useState(emailQueryParam?.toString() ?? "");
+  // const [email, setEmail] = useState(emailQueryParam?.toString() ?? "");
 
   useEffect(() => {
     if (actionData?.error) {

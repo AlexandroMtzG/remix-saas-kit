@@ -9,13 +9,13 @@ import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessMod
 import clsx from "~/utils/shared/ClassesUtils";
 import WarningBanner from "~/components/ui/banners/WarningBanner";
 import SelectUsers, { RefSelectUsers } from "~/components/core/users/SelectUsers";
-import { TenantUser, User, Workspace, WorkspaceUser } from "@prisma/client";
+import { TenantUser, User, WorkspaceUser } from "@prisma/client";
 import { LoaderFunction, json, useLoaderData, ActionFunction, redirect, useActionData, Form, MetaFunction } from "remix";
 import { getUserInfo } from "~/utils/session.server";
 import { getTenantUsers } from "~/utils/db/tenants.db.server";
-import { i18n } from "~/locale/i18n.server";
 import { useAppData } from "~/utils/data/useAppData";
 import { createWorkspace, createWorkspaceUser, getWorkspacesCount } from "~/utils/db/workspaces.db.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "New workspace | Remix SaasFrontend",
@@ -52,7 +52,7 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 const unauthorized = (data: ActionData) => json(data, { status: 401 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
   const userInfo = await getUserInfo(request);
   if (!userInfo?.currentTenantId) {
     return unauthorized({

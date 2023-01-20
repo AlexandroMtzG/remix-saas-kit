@@ -14,21 +14,19 @@ import UploadDocument from "~/components/ui/uploaders/UploadDocument";
 import IconContract from "~/assets/icons/IconContract";
 import WarningBanner from "~/components/ui/banners/WarningBanner";
 import Breadcrumb from "~/components/ui/breadcrumbs/Breadcrumb";
-import Loading from "~/components/ui/loaders/Loading";
 import { updateItem } from "~/utils/shared/ObjectUtils";
 import PdfPreview from "~/components/ui/pdf/PdfViewer";
-import { loadAppData, useAppData } from "~/utils/data/useAppData";
+import { useAppData } from "~/utils/data/useAppData";
 import { ActionFunction, Form, json, LoaderFunction, MetaFunction, redirect, useActionData, useLoaderData, useSubmit, useTransition } from "remix";
 import { getLink, getLinksWithMembers, LinkWithWorkspacesAndMembers } from "~/utils/db/links.db.server";
-import { i18n } from "~/locale/i18n.server";
 import { getUserInfo } from "~/utils/session.server";
 import { Employee } from "@prisma/client";
 import { createContract, getContract, getMonthlyContractsCount } from "~/utils/db/contracts.db.server";
 import { getEmployees } from "~/utils/db/app/employees.db.server";
 import LoadingButton from "~/components/ui/buttons/LoadingButton";
 import { ContractStatus } from "~/application/enums/app/contracts/ContractStatus";
-import { sendEmail } from "~/utils/email.server";
 import { sendContract } from "~/utils/app/ContractUtils";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "New contract | Remix SaasFrontend",
@@ -64,7 +62,7 @@ type ActionData = {
 };
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 export const action: ActionFunction = async ({ request }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const userInfo = await getUserInfo(request);
 
@@ -116,7 +114,7 @@ export const action: ActionFunction = async ({ request }) => {
   const contract = await getContract(createdContract.id);
 
   if (contract) {
-    await sendContract(request, contract)
+    await sendContract(request, contract);
   }
 
   return redirect("/app/contract/" + createdContract.id);

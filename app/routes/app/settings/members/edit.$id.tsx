@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Transition } from "@headlessui/react";
 import { FormEvent, Fragment, useEffect, useRef, useState } from "react";
@@ -8,14 +8,14 @@ import ErrorModal, { RefErrorModal } from "~/components/ui/modals/ErrorModal";
 import SuccessModal, { RefSuccessModal } from "~/components/ui/modals/SuccessModal";
 import { useEscapeKeypress } from "~/utils/shared/KeypressUtils";
 import SelectWorkspaces, { RefSelectWorkspaces } from "~/components/core/workspaces/SelectWorkspaces";
-import { TenantUser, User, Workspace, WorkspaceUser } from "@prisma/client";
+import { TenantUser, User, Workspace } from "@prisma/client";
 import { ActionFunction, Form, json, LoaderFunction, MetaFunction, redirect, useActionData, useLoaderData, useSubmit, useTransition } from "remix";
 import { deleteTenantUser, getTenantMember, getTenantUser, getTenantUsers, updateTenantUser } from "~/utils/db/tenants.db.server";
-import { i18n } from "~/locale/i18n.server";
 import { getUserWorkspaces, getWorkspace, getWorkspaces, updateUsersWorkspaces } from "~/utils/db/workspaces.db.server";
 import { getUserInfo } from "~/utils/session.server";
 import clsx from "clsx";
 import { useAppData } from "~/utils/data/useAppData";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Edit member | Remix SaasFrontend",
@@ -58,7 +58,7 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 const unauthorized = (data: ActionData) => json(data, { status: 401 });
 export const action: ActionFunction = async ({ request, params }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const { id } = params;
   if (!id) {

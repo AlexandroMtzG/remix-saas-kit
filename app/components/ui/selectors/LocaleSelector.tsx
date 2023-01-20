@@ -21,7 +21,7 @@ export default function LocaleSelector({ className, btnClassName }: Props) {
     const form = new FormData();
     form.set("type", "setLocale");
     form.set("redirect", location.pathname);
-    form.set("locale", value);
+    form.set("lng", value);
     submit(form, { method: "post", action: "/" });
     // localStorage.setItem("locale", value);
     // i18n.changeLanguage(value);

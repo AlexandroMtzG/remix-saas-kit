@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { ReactNode, useState } from "react";
-import { useTranslation } from "react-i18next";
 import LinkOrAhref from "../buttons/LinkOrAhref";
 
 export type BannerBlockDto = {
   text: string;
+  href?: string;
   cta: {
     text: ReactNode;
     href: string;
@@ -13,7 +13,6 @@ export type BannerBlockDto = {
 };
 
 export default function BannerVariantTop({ item }: { item: BannerBlockDto }) {
-  const { t } = useTranslation();
   const [open, setOpen] = useState(true);
 
   return (
@@ -23,7 +22,15 @@ export default function BannerVariantTop({ item }: { item: BannerBlockDto }) {
           <div className="mx-auto max-w-7xl py-1.5 px-3 sm:py-3 sm:px-6 lg:px-8">
             <div className="flex w-full items-center space-x-3 lg:w-auto lg:justify-end">
               <div className={clsx("flex flex-grow", item.cta ? "justify-start" : "justify-center")}>
-                <div className="flex items-baseline space-x-1 text-sm font-medium text-white sm:text-base">{t(item.text)}</div>
+                <div className="flex items-baseline space-x-1 text-sm font-medium text-white sm:text-base">
+                  {item.href ? (
+                    <LinkOrAhref to={item.href} className="hover:underline">
+                      {item.text}
+                    </LinkOrAhref>
+                  ) : (
+                    <span>{item.text}</span>
+                  )}
+                </div>
               </div>
               {item.cta && (
                 <div className="order-2 mt-0 flex w-auto flex-shrink-0 space-x-2">

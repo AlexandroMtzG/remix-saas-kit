@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Transition } from "@headlessui/react";
-import { FormEvent, Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { TenantUserRole } from "~/application/enums/core/tenants/TenantUserRole";
 import { WorkspaceType } from "~/application/enums/core/tenants/WorkspaceType";
 import ConfirmModal, { RefConfirmModal } from "~/components/ui/modals/ConfirmModal";
@@ -15,8 +15,8 @@ import { ActionFunction, Form, json, LoaderFunction, MetaFunction, redirect, use
 import { TenantUser, User, Workspace, WorkspaceUser } from "@prisma/client";
 import { getTenantMember, getTenantUsers } from "~/utils/db/tenants.db.server";
 import { getUserInfo } from "~/utils/session.server";
-import { i18n } from "~/locale/i18n.server";
 import { getWorkspace, updateWorkspace, updateWorkspaceUsers, deleteWorkspace } from "~/utils/db/workspaces.db.server";
+import { i18nHelper } from "~/locale/i18n.utils";
 
 export const meta: MetaFunction = () => ({
   title: "Edit workspace | Remix SaasFrontend",
@@ -57,7 +57,7 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 const unauthorized = (data: ActionData) => json(data, { status: 401 });
 export const action: ActionFunction = async ({ request, params }) => {
-  let t = await i18n.getFixedT(request, "translations");
+  const { t } = await i18nHelper(request);
 
   const { id } = params;
   if (!id) {
